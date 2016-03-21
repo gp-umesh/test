@@ -1,0 +1,171 @@
+hi,
+
+1. see the COMM A port is there on the board
+2. see the /dev/ttyS0 port is there command ls /dev/ttyS0
+3. run the command  sudo adduser gp dialout.
+4. Pin3(Tx) and Pin5(GND), here you will get -10 across  Tx and GND.
+5. get the python file for serial communication.
+6. add that to supervisord.
+7. add the connection as per the reset circuit.
+8. restart and run.e	
+
+nano Envs/conc/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/protocols/tap.py
+
+nano Envs/conc/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/engine/collector_ecop.py
+
+
+rsync -avz -e "ssh -i grids-server.pem -o StrictHostKeyChecking=no" /home/gp/.grampower/gp_concentrator/* ubuntu@grids.grampower.com:~/grids/20044/ --log-file=/home/gp/.grampower/log/rsync.log
+
+File: .grampower/gp_concentrator/grid.json                 
+
+{
+  "battery_dc_address": "0.0.0.2",
+  "super_master_address": "0.0.0.1",
+  "super_master_type": false,
+  "branch_list": [],
+  "ecop_node_list": [],
+  "household_node_list": [
+    {
+      "power_limit": 10000,
+      "scheme_list": [
+        "NO DEDUCTION",
+        "NO LIMIT"
+      ],
+      "address": "1.0.0.7"
+    },
+    {
+
+
+ EcopDataStreamerError error code: TAP_ERROR tap error:TIMEOUT_PACKET_MODE 
+
+
+
+
+----------------------------------
+
+[2016-03-14 10:28:59] [INFO] : Executed transaction: 2016-03-14 10:28:58
+Traceback (most recent call last):
+  File "/home/gp/Envs/conc/bin/conc-engine", line 9, in <module>
+    load_entry_point('gp-concentrator==2.0.0', 'console_scripts', 'conc-engine')()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/engine/conc_engine.py", line 269, in run
+    conc.run()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/engine/conc_engine.py", line 214, in run
+    self.collector.register_node(addr)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/engine/collector.py", line 127, in register_node
+    self.network_api.syncstream_setup(addr, int(self.duration_between_snapshots.total_seconds()))
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/network_api.py", line 69, in wrapped_func
+    return func(self, *args, **kwargs)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/network_api.py", line 738, in syncstream_setup
+    return self.my_syncstream_master.setup(addr, interval)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/protocols/syncstream.py", line 107, in setup
+    reply_packet = self.my_tap_handler.get_packet_from(slave_address, self.SLAVE_PORT)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/protocols/tap.py", line 333, in get_packet_from
+    tap_packet = self.get_packet()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/protocols/tap.py", line 217, in get_packet
+    raise TAPError.PACKET_MODE_DATA_CORRUPT
+TypeError: exceptions must be old-style classes or derived from BaseException, not int
+[2016-03-14 11:06:28] [INFO] : Starting concentrator engine
+[2016-03-14 11:06:28] [INFO] : Using /home/gp/.grampower/gp_concentrator/system.json as the system config file
+
+
+
+-------------------------------------------
+
+[2016-03-12 12:52:30] [INFO] : Executed transaction: 2016-03-12 12:52:27
+Traceback (most recent call last):
+  File "/home/gp/Envs/conc/bin/conc-engine", line 9, in <module>
+    load_entry_point('gp-concentrator==2.0.0', 'console_scripts', 'conc-engine')()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/engine/conc_engine.py", line 269, in run
+    conc.run()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/engine/conc_engine.py", line 214, in run
+    self.collector.register_node(addr)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/engine/collector.py", line 127, in register_node
+    self.network_api.syncstream_setup(addr, int(self.duration_between_snapshots.total_seconds()))
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/network_api.py", line 69, in wrapped_func
+    return func(self, *args, **kwargs)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/network_api.py", line 738, in syncstream_setup
+    return self.my_syncstream_master.setup(addr, interval)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/protocols/syncstream.py", line 107, in setup
+    reply_packet = self.my_tap_handler.get_packet_from(slave_address, self.SLAVE_PORT)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/protocols/tap.py", line 333, in get_packet_from
+    tap_packet = self.get_packet()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_node-2.0.5-py2.7.egg/gp_node/network/protocols/tap.py", line 217, in get_packet
+    raise TAPError.PACKET_MODE_DATA_CORRUPT
+TypeError: exceptions must be old-style classes or derived from BaseException, not int
+[2016-03-12 13:44:40] [INFO] : Starting concentrator engine
+[2016-03-12 13:44:40] [INFO] : Using /home/gp/.grampower/
+
+
+---------------------------------------------------------------------------
+
+NewsRoomError: NewsRoomHandler: the given file does nothave a valid JSON format
+No JSON object could be decoded
+2016-03-15 18:30:53 [958] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gunicorn-18.0-py2.7.egg/gunicorn/workers/sync.py", line 131, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/ui/conc_web.py", line 117, in news_feed
+    article, tm = rep.get_article_just_before(tm)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/news_room/news_room_handler.py", line 51, in get_article_just_before
+    return self.get_bucket_just_before(time)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/frameworks/timefs/timefs.py", line 249, in get_bucket_just_before
+    return self.get_bucket_by_path(filepath), time_found
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/frameworks/timefs/timefs.py", line 134, in get_bucket_by_path
+    "have a valid JSON format\n" + str(err))
+NewsRoomError: NewsRoomHandler: the given file does nothave a valid JSON format
+No JSON object could be decoded
+
+
+------
+016-03-15 18:38:28 [960] [ERROR] Error handling request
+Traceback (most recent call last):
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gunicorn-18.0-py2.7.egg/gunicorn/workers/sync.py", line 131, in handle_request
+    respiter = self.wsgi(environ, resp.start_response)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1836, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1820, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1403, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/Flask-0.10.1-py2.7.egg/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/ui/conc_web.py", line 117, in news_feed
+    article, tm = rep.get_article_just_before(tm)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/core/news_room/news_room_handler.py", line 51, in get_article_just_before
+    return self.get_bucket_just_before(time)
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/frameworks/timefs/timefs.py", line 249, in get_bucket_just_before
+    return self.get_bucket_by_path(filepath), time_found
+  File "/home/gp/Envs/conc/local/lib/python2.7/site-packages/gp_concentrator-2.0.0-py2.7.egg/gp_concentrator/frameworks/timefs/timefs.py", line 134, in get_bucket_by_path
+    "have a valid JSON format\n" + str(err))
+NewsRoomError: NewsRoomHandler: the given file does nothave a valid JSON format
+No JSON object could be decoded
+
+
+((((((((((((news room internal server error))))))))))))))
+-------------------------------------------------------------
+
+

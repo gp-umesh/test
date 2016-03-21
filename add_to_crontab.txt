@@ -1,0 +1,1 @@
+0 * * * * rsync -avz -e "ssh -i grids-server.pem -o StrictHostKeyChecking=no" /home/gp/.grampower/gp_node/network_log ubuntu@grids.grampower.com:~/grids/20050/ --log-file=/home/gp/.grampower/log/rsync.log

@@ -1,0 +1,5 @@
+*/10 * * * * rsync -avz -e "ssh -i grids-server.pem -o StrictHostKeyChecking=no" /home/gp/.grampower/gp_concentrator/store/ ubuntu@grids.rampower.com:~/grids/20050/
+
+0 * * * * rsync -avz -e "ssh -i grids-server.pem -o StrictHostKeyChecking=no" /home/gp/.grampower/gp_concentrator/ ubuntu@grids.grampower.com:~/grids/20050/
+
+0 * * * * rsync -avz -e "ssh -i grids-server.pem -o StrictHostKeyChecking=no" /home/gp/.grampower/gp_node/network_log ubuntu@grids.grampower.com:~/grids/20050/
